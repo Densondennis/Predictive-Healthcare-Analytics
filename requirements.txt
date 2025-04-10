@@ -1,0 +1,13 @@
+General libraries
+
+pandas
+numpy
+scikit-learn
+xgboost
+matplotlib
+flask
+shap
+joblib
+seaborn
+imbalanced-learn
+

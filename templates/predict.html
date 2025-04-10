@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Heart Disease Prediction</h2>
+        <form action="/predict" method="post">
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Age:</label>
+                    <input type="number" name="Age" min="1" max="120" required>
+                </div>
+                <div class="input-group">
+                    <label>Sex:</label>
+                    <select name="Sex">
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Chest Pain Type:</label>
+                    <select name="ChestPainType">
+                        <option value="0">Typical Angina</option>
+                        <option value="1">Atypical Angina</option>
+                        <option value="2">Non-Anginal</option>
+                        <option value="3">Asymptomatic</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Resting Blood Pressure (mmHg):</label>
+                    <input type="number" name="RestingBP" min="80" max="200" required>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Cholesterol Level (mg/dL):</label>
+                    <input type="number" name="Cholesterol" min="100" max="400" required>
+                </div>
+                <div class="input-group">
+                    <label>Fasting Blood Sugar > 120 mg/dL:</label>
+                    <select name="FBS">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Max Heart Rate Achieved:</label>
+                    <input type="number" name="MaxHR" min="60" max="220" required>
+                </div>
+                <div class="input-group">
+                    <label>Exercise-Induced Angina:</label>
+                    <select name="ExAng">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>ST Depression:</label>
+                    <input type="number" name="OldPeak" min="0.0" max="6.0" step="0.1" required>
+                </div>
+                <div class="input-group">
+                    <label>Slope of ST Segment:</label>
+                    <select name="Slope">
+                        <option value="0">Upsloping</option>
+                        <option value="1">Flat</option>
+                        <option value="2">Downsloping</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Number of Major Vessels:</label>
+                    <input type="number" name="CA" min="0" max="4" required>
+                </div>
+                <div class="input-group">
+                    <label>Thalassemia Type:</label>
+                    <select name="Thal">
+                        <option value="1">Normal</option>
+                        <option value="2">Fixed Defect</option>
+                        <option value="3">Reversible Defect</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <h2 class="result">Prediction Result: {{ prediction }}</h2>
+
+            <h2>Recommended Actions:</h2>
+            <ul>
+                {% for rec in recommendations.recommendations %}
+                    <li>{{ rec }}</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Avoid:</h2>
+            <ul>
+                {% for avoid_item in recommendations.avoid %}
+                    <li>{{ avoid_item }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <a href="/"><button class="home-btn">Back to Home</button></a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let probability = {{ proba }};
+            let threshold = 0.6;
+            let prediction = probability >= threshold ? 1 : 0;
+            let resultText = prediction === 1 ? "The person is at high risk of heart disease." : "The person is not at risk of heart disease.";
+            
+            let resultContainer = document.querySelector(".result");
+            if (resultContainer) {
+                resultContainer.innerText = "Prediction Result: " + resultText;
+            }
+        });
+    </script>
+</body>
+</html>
