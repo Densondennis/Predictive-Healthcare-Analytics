@@ -1,50 +1,54 @@
-# Predictive Healthcare Analytics: Modeling Patient Outcomes
-## Overview
-Predicting patient outcomes is a crucial task in healthcare that can have a significant impact on improving patient care. By developing models that can predict patient outcomes, such as mortality or disease progression, providers can tailor treatment plans to individual patients and improve overall outcomes.
+# ❤️ Heart Disease Prediction using Machine Learning
 
-This project aims to develop predictive models that leverage healthcare data to improve patient outcomes. The models will be based on various factors such as demographics, comorbidities, and treatments. The project will use advanced analytics techniques, such as machine learning, to achieve this goal.
+## Overview
+Heart disease remains a leading cause of death globally. Early prediction can significantly reduce risks by enabling timely interventions. This project aims to develop a predictive model using machine learning, specifically XGBoost, to accurately identify the presence of heart disease based on patient data.
 
 ## Objectives
-The main objectives of this project are:
+- Predict heart disease presence using clinical and demographic data.
+- Improve early diagnosis to assist healthcare providers in decision-making.
+- Evaluate and optimize model performance through various metrics.
 
-* Develop predictive models that can accurately predict patient outcomes based on various factors such as demographics, comorbidities, and treatments.
-* Use the models to tailor treatment plans to individual patients and improve overall outcomes.
-* Evaluate the performance of the models and refine them as necessary to improve their accuracy and effectiveness.
+## Dataset
+- Source: [Kaggle - Heart Disease UCI Dataset](https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction)
+- Records: 921
+- Features: 16 attributes including age, sex, cholesterol, resting blood pressure, chest pain type, and others.
 
-## Approach
-The project will follow the following approach:
+## Methodology
 
-* Define the problem and outcome of interest: The project will identify the specific patient outcome to predict, such as mortality or disease progression. It will also define the problem, such as which factors are most important in predicting the outcome.
+### 1. Data Preprocessing
+- Removed duplicates and unnecessary columns.
+- Encoded categorical variables (e.g., sex, chest pain type, thal).
+- Handled missing values using median imputation.
+- Balanced the dataset using SMOTE to address class imbalance.
+- Saved the cleaned dataset as `heart_disease_cleaned_updated.csv`.
 
-* Gather and preprocess data: The project will collect data on patients' demographics, comorbidities, treatments, and any other relevant variables. It will preprocess the data by cleaning and transforming it to prepare it for analysis.
+### 2. Model Selection & Training
+- Selected XGBoost for its high accuracy and efficiency.
+- Tuned hyperparameters (learning rate, max depth, n_estimators) to improve performance.
+- Used stratified K-Fold cross-validation to ensure robust training.
 
-* Select a modeling approach: The project will choose an appropriate machine learning algorithm for predicting the outcome. Some commonly used algorithms include logistic regression, decision trees, random forests, and neural networks
+### 3. Evaluation Metrics
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
 
-* Train the model: The project will split the data into training and testing sets and use the training set to train the model. The goal is to find a model that accurately predicts the outcome based on the input variables.
+## Results
+The XGBoost model showed strong predictive performance across all evaluation metrics, demonstrating its potential for use in clinical decision support.
 
-* Evaluate the model: The project will use the testing set to evaluate the performance of the model. Common evaluation metrics include accuracy, precision, recall, and F1 score.
-
-* Refine the model: If the model performance is not satisfactory, the project will refine the model by tweaking hyperparameters, feature selection, or feature engineering.
-
-* Deploy the model: Once the project has developed a model that meets the desired performance metrics, it will deploy the model into the clinical workflow. The model can help providers tailor treatment plans to individual patients and improve overall outcomes.
+## Future Work
+- Develop a mobile app for real-time prediction and integration into clinical workflows.
+- Incorporate additional datasets to improve model generalization.
+- Implement Explainable AI (XAI) tools like SHAP to interpret model predictions.
 
 ## Deliverables
-The project will deliver the following:
-
-* A well-documented codebase for developing and deploying the predictive models.
-* A report summarizing the project's methodology, findings, and conclusions.
-* A dashboard or visualization tool to help providers interpret the model's output and make informed decisions.
-
-## Timeline
-The project timeline is as follows:
-
-* Data collection and preprocessing: 2 weeks
-* Modeling and evaluation: 6 weeks
-* Model refinement and deployment: 2 weeks
-* Documentation and reporting: 2 weeks
+- Source code for preprocessing, modeling, and evaluation.
+- Cleaned dataset and results summary.
+- Visual dashboard (in development) for healthcare insights.
 
 ## Team
-The project will be carried out by a team of data scientists, healthcare professionals, and software engineers. The team will work together to ensure that the models developed are accurate, reliable, and effective in improving patient outcomes
+Developed by Denis Kipkirui — Computer Science student at Maasai Mara University, with contributions from healthcare domain experts and data scientists.
 
-## Conclusion
-**Predictive healthcare analytics**  is a crucial area that can have a significant impact on improving patient outcomes. This project aims to develop models that can predict patient outcomes based on various factors such as demographics, comorbidities, and treatments. By using advanced analytics techniques, such as machine learning, the project will develop models that can help providers tailor treatment plans to individual patients and improve overall outcomes. The project will deliver a well-documented codebase, a report summarizing the methodology and findings, and a dashboard or visualization tool to help providers interpret the model's output.
+## License
+This project is open-source under the MIT License.
