@@ -48,7 +48,7 @@ The XGBoost model showed strong predictive performance across all evaluation met
 - Visual dashboard (in development) for healthcare insights.
 
 ## Team
-Developed by Denis Kipkirui — Computer Science student at Maasai Mara University, with contributions from healthcare domain experts and data scientists.
+Developed by Denis Kipkemboi  — Computer Science student at Maasai Mara University, with contributions from healthcare domain experts and data scientists.
 
 ## License
 This project is open-source under the MIT License.
